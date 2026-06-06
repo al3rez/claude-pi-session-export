@@ -1,16 +1,17 @@
 {
-  "name": "pi-session-export",
+  "name": "claude-pi-session-export",
   "owner": {
-    "name": "al3rez"
+    "name": "Alireza Bashiri",
+    "email": "al3rez@gmail.com"
   },
   "metadata": {
-    "description": "Local marketplace hosting the pi-session-export plugin."
+    "description": "Local marketplace hosting the claude-pi-session-export plugin."
   },
   "plugins": [
     {
-      "name": "pi-session-export",
+      "name": "claude-pi-session-export",
       "source": "./",
-      "description": "Export Claude Code sessions to a self-contained interactive HTML file, identical to pi's /export."
+      "description": "Brings pi's session export to Claude Code — export a Claude Code session to a self-contained interactive HTML file identical to pi's /export."
     }
   ]
 }

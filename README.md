@@ -1,8 +1,8 @@
-# pi-session-export
+# claude-pi-session-export
 
-**A Claude Code plugin that lets Claude Code export its sessions as HTML, exactly
-like pi's `/export`.** The output is a **single self-contained HTML file** —
-pixel-for-pixel and feature-for-feature identical to
+**Brings pi's (`earendil-works/pi`) session export to Claude Code.** It's a Claude
+Code plugin that exports a Claude Code session to a **single self-contained HTML
+file** — pixel-for-pixel and feature-for-feature identical to
 [`earendil-works/pi`](https://github.com/earendil-works/pi)'s `/export`.
 
 It bundles pi's exact export front-end (`template.html`, `template.css`,
@@ -17,8 +17,8 @@ working offline.
 ## Install
 
 ```
-/plugin marketplace add ~/pi-session-export
-/plugin install pi-session-export@pi-session-export
+/plugin marketplace add ~/claude-pi-session-export
+/plugin install claude-pi-session-export@claude-pi-session-export
 ```
 
 (Restart or `/plugin` to confirm it's enabled.)
@@ -46,7 +46,7 @@ Options:
 You can also run it directly, outside the slash command:
 
 ```
-python3 ~/pi-session-export/scripts/export_session.py [session] [-o out.html] [--theme dark|light]
+python3 ~/claude-pi-session-export/scripts/export_session.py [session] [-o out.html] [--theme dark|light]
 ```
 
 ## How it maps Claude Code → pi

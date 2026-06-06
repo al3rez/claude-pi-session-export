@@ -1,9 +1,10 @@
 {
-  "name": "pi-session-export",
+  "name": "claude-pi-session-export",
   "version": "1.0.0",
-  "description": "Export Claude Code sessions to a self-contained, interactive HTML file — identical in look and behavior to pi's (earendil-works/pi) /export.",
+  "description": "Brings pi's (earendil-works/pi) session export to Claude Code — export a Claude Code session to a self-contained, interactive HTML file identical to pi's /export.",
   "author": {
-    "name": "al3rez"
+    "name": "Alireza Bashiri",
+    "email": "al3rez@gmail.com"
   },
-  "keywords": ["export", "session", "html", "transcript", "pi"]
+  "keywords": ["claude-code", "pi", "session-export", "html", "transcript"]
 }
