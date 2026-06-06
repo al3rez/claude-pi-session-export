@@ -1,0 +1,16 @@
+{
+  "name": "pi-session-export",
+  "owner": {
+    "name": "al3rez"
+  },
+  "metadata": {
+    "description": "Local marketplace hosting the pi-session-export plugin."
+  },
+  "plugins": [
+    {
+      "name": "pi-session-export",
+      "source": "./",
+      "description": "Export Claude Code sessions to a self-contained interactive HTML file, identical to pi's /export."
+    }
+  ]
+}

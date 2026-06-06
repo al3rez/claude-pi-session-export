@@ -1,0 +1,9 @@
+{
+  "name": "pi-session-export",
+  "version": "1.0.0",
+  "description": "Export Claude Code sessions to a self-contained, interactive HTML file — identical in look and behavior to pi's (earendil-works/pi) /export.",
+  "author": {
+    "name": "al3rez"
+  },
+  "keywords": ["export", "session", "html", "transcript", "pi"]
+}
