@@ -156,7 +156,11 @@ def build_theme_vars(name):
 # HTML generation (mirrors index.ts generateHtml).                             #
 # --------------------------------------------------------------------------- #
 
-def generate_html(session_data, theme_name="dark"):
+def html_escape(s):
+    return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
+
+
+def generate_html(session_data, theme_name="dark", title=None):
     template = (EXPORT_DIR / "template.html").read_text(encoding="utf-8")
     template_css = (EXPORT_DIR / "template.css").read_text(encoding="utf-8")
     template_js = (EXPORT_DIR / "template.js").read_text(encoding="utf-8")
@@ -180,7 +184,7 @@ def generate_html(session_data, theme_name="dark"):
         .replace("{{INFO_BG}}", info_bg)
     )
 
-    return (
+    html = (
         template
         .replace("{{CSS}}", css)
         .replace("{{JS}}", template_js)
@@ -188,6 +192,17 @@ def generate_html(session_data, theme_name="dark"):
         .replace("{{MARKED_JS}}", marked_js)
         .replace("{{HIGHLIGHT_JS}}", hljs_js)
     )
+
+    # pi hardcodes <title>Session Export</title>. Claude Code stores a real
+    # session title (aiTitle); use it when present, otherwise keep pi's default.
+    if title:
+        html = html.replace(
+            "<title>Session Export</title>",
+            f"<title>{html_escape(title)}</title>",
+            1,
+        )
+
+    return html
 
 
 # --------------------------------------------------------------------------- #
@@ -480,6 +495,7 @@ def read_jsonl(path):
 def session_meta(lines, fallback_path):
     session_id = None
     cwd = None
+    ai_title = None
     for ln in lines:
         if not isinstance(ln, dict):
             continue
@@ -487,13 +503,13 @@ def session_meta(lines, fallback_path):
             session_id = ln["sessionId"]
         if cwd is None and ln.get("cwd"):
             cwd = ln["cwd"]
-        if session_id and cwd:
-            break
+        if ln.get("aiTitle"):
+            ai_title = ln["aiTitle"]  # keep the most recent
     if not session_id:
         session_id = Path(fallback_path).stem
     if not cwd:
         cwd = os.getcwd()
-    return session_id, cwd
+    return session_id, cwd, ai_title
 
 
 def main():
@@ -511,13 +527,13 @@ def main():
     if not lines:
         raise SystemExit(f"Session file is empty: {src}")
 
-    session_id, cwd = session_meta(lines, src)
+    session_id, cwd, ai_title = session_meta(lines, src)
     session_data = convert(lines, session_id, cwd)
 
     if not session_data["entries"]:
         raise SystemExit("Nothing to export - the session has no messages yet.")
 
-    html = generate_html(session_data, args.theme)
+    html = generate_html(session_data, args.theme, title=ai_title)
 
     if args.output:
         out = Path(args.output).expanduser()

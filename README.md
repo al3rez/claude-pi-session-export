@@ -62,6 +62,7 @@ python3 ~/pi-session-export/scripts/export_session.py [session] [-o out.html] [-
 | `Edit` `structuredPatch` | synthesized into `details.diff` for pi's diff view |
 | `usage` tokens | mapped + priced (Opus $5/$25, Sonnet $3/$15, Haiku $1/$5 per 1M; cache-write 1.25×, cache-read 0.1×) for the cost header |
 | `sessionId` / `cwd` / first timestamp | session header |
+| `aiTitle` | page `<title>` (pi hardcodes "Session Export"; falls back to it when absent) |
 
 Notes:
 - Usage is de-duplicated across an assistant message's streamed chunks (same
